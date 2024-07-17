@@ -6,7 +6,6 @@ require("telescope").setup({
 			i = {
 				["<esc>"] = actions.close, -- Insta-close prompt
 				["<C-c>"] = function() -- Goto normal mode instead of closing
-					print("'ello!")
 					vim.cmd("stopinsert")
 				end,
 			},
