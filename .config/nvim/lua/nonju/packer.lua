@@ -12,7 +12,20 @@ return require("packer").startup(function(use)
 		"folke/tokyonight.nvim",
 		config = function()
 			vim.cmd("colorscheme tokyonight-storm")
+
+			tokyonight = require("tokyonight")
+			tokyonight.setup({
+				on_colors = function(colors)
+					-- Todo
+					-- https://github.com/folke/tokyonight.nvim?tab=readme-ov-file#-overriding-colors--highlight-groups
+					-- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_storm.lua
+				end,
+			})
 		end,
+	})
+	use({ -- To try out -> remove if not nice (vscode colorscheme)
+		"rockyzhang24/arctic.nvim",
+		requires = { "rktjmp/lush.nvim" },
 	})
 
 	use({
@@ -46,6 +59,7 @@ return require("packer").startup(function(use)
 
 	-- Followed tutorial in this video
 	-- https://www.youtube.com/watch?v=ybUE4D80XSk
+	-- (updated syntax after upgrading to neovim v0.11)
 	use({
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -56,20 +70,21 @@ return require("packer").startup(function(use)
 				lsp_fallback = true,
 				async = false,
 				timeout_ms = 500,
+				stop_after_first = true,
 			}
 
 			conform.setup({
 				formatters_by_ft = {
-					javascript = { { "prettierd", "prettier" } },
-					typescript = { { "prettierd", "prettier" } },
-					javascriptreact = { { "prettierd", "prettier" } },
-					typescriptreact = { { "prettierd", "prettier" } },
-					svelte = { { "prettierd", "prettier" } },
-					css = { { "prettierd", "prettier" } },
-					html = { { "prettierd", "prettier" } },
-					json = { { "prettierd", "prettier" } },
-					yaml = { { "prettierd", "prettier" } },
-					markdown = { { "prettierd", "prettier" } },
+					javascript = { "prettierd", "prettier" },
+					typescript = { "prettierd", "prettier" },
+					javascriptreact = { "prettierd", "prettier" },
+					typescriptreact = { "prettierd", "prettier" },
+					svelte = { "prettierd", "prettier" },
+					css = { "prettierd", "prettier" },
+					html = { "prettierd", "prettier" },
+					json = { "prettierd", "prettier" },
+					yaml = { "prettierd", "prettier" },
+					markdown = { "prettierd", "prettier" },
 					lua = { "stylua" },
 					python = { "isort", "black" },
 					c = { "clang_format" },
@@ -85,6 +100,35 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = {
+					"~",
+					"~/Downloads",
+					"/",
+				},
+				auto_restore_enabled = true,
+				auto_session_enable_last_session = false,
+			})
+		end,
+	})
+
+	use("delphinus/vim-firestore")
+
+	-- TODO - try out!!
+	-- use({
+	--   "iamcco/markdown-preview.nvim",
+	--   run = function() vim.fn["mkdp#util#install"]() end,
+	-- })
+	--
+	-- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+	-- Base commenting functions already exists in newer neovim versions. This might be helpful for adding block comments however!
+
+	-- use({
 	-- use {
 	--   'numToStr/Comment.nvim',
 	--   config = function()

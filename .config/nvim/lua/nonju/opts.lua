@@ -1,4 +1,3 @@
-
 -- general
 vim.opt.backspace = "2"
 vim.opt.showcmd = true
@@ -33,3 +32,16 @@ vim.opt.scrolloff = 8 -- Always pad 8 lines on top/bottom of view
 
 -- vim.opt.colorcolumn = "100"
 
+-- Allow for case insensitive search by default ( enable by adding \C to pattern )
+-- Ex:
+--  - /word      -- Case insensitive
+--  - /Word      -- Case sensitive
+--  - /word\C    -- Case sensitive
+--  - /Word\c    -- Case insensitive
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- set formatoptions-=cro -- Should probably set this to prevent autocommenting on new lines
+
+-- Prevent panes from resizing when others are closed
+-- vim.opt.noequalalways = true
