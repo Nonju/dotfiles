@@ -41,7 +41,8 @@ vim.opt.scrolloff = 8 -- Always pad 8 lines on top/bottom of view
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- set formatoptions-=cro -- Should probably set this to prevent autocommenting on new lines
+-- Prevent autocommenting on new lines
+vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Corresponds to "set formatoptions-=cro"
 
 -- Prevent panes from resizing when others are closed
 -- vim.opt.noequalalways = true
