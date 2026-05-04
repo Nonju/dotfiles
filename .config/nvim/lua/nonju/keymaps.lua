@@ -45,3 +45,7 @@ vim.keymap.set("n", "<C-H>", "20zh")
 -- Allows usage of word highlighting (asterisk *) without jumping to next instance
 vim.keymap.set("n", "*", ":keepjumps normal! mi*`i<CR>", { silent = true })
 
+vim.keymap.set("n", "<Up>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Down>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Left>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Right>", ":vertical resize -2<CR>", { noremap = true, silent = true })
